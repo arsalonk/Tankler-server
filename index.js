@@ -22,6 +22,17 @@ app.use(
   })
 );
 
+const fish = [
+  'one',
+  'two',
+  'red',
+  'blue'
+];
+
+app.get('/api/fish', (req, res) => {
+  res.json(fish);
+});
+
 function runServer(port = PORT) {
   const server = app
     .listen(port, () => {
