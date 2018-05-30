@@ -1,0 +1,18 @@
+[
+  {
+    "name": "feed fish food",
+    "category": "feeding"
+  },
+  {
+    "name": "feed fish medicine",
+    "category": "supplements"
+  },
+  {
+    "name": "test pH levels",
+    "category": "testing"
+  },
+  {
+    "name": "change lightbulbs",
+    "category": "maintenance"
+  }
+]

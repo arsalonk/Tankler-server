@@ -8,6 +8,9 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
+const tasksFoldersRouter = require('./routes/tasks-folders')
+const tasksRouter = require('./routes/tasks')
+
 const app = express();
 
 app.use(
@@ -22,16 +25,8 @@ app.use(
   })
 );
 
-const fish = [
-  'one',
-  'two',
-  'red',
-  'blue'
-];
-
-app.get('/api/fish', (req, res) => {
-  res.json(fish);
-});
+app.use('/api/tasks-folders', tasksFoldersRouter);
+app.use('/api/tasks', tasksRouter);
 
 function runServer(port = PORT) {
   const server = app
