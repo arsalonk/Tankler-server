@@ -1,0 +1,34 @@
+[
+  {
+    "stats": 42,
+    "category": "alkalinity"
+  },
+  {
+    "stats": 36,
+    "category": "ammonia"
+  },
+  {
+    "stats": 12,
+    "category": "calcium"
+  },
+  {
+    "stats": 0.7,
+    "category": "nitrate"
+  },
+  {
+    "stats": 11,
+    "category": "pH"
+  },
+  {
+    "stats": 3,
+    "category": "phosphate"
+  },
+  {
+    "stats": 4.5,
+    "category": "salinity"
+  },
+  {
+    "stats": 117,
+    "category": "temperature"
+  }
+]

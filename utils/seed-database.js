@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const { DATABASE_URL } = require('../config');
 
-const tasksFolder = require('../models/tasks-folders');
-const task = require('../models/tasks')
+const task = require('../models/task');
+const parameter = require('../models/parameter');
 
-const seedTasksFolders = require('../db/seed/tasks-folders');
-const seedTasks = require('../db/seed/tasks')
+const seedTasks = require('../db/seed/tasks');
+const seedParameters = require('../db/seed/parameters')
 
 mongoose.connect(DATABASE_URL)
   .then(() => {
@@ -13,10 +13,10 @@ mongoose.connect(DATABASE_URL)
   })
   .then(() => {
     return Promise.all([
-      tasksFolder.insertMany(seedTasksFolders),
-      tasksFolder.createIndexes(),
       task.insertMany(seedTasks),
-      task.createIndexes()
+      task.createIndexes(),
+      parameter.insertMany(seedParameters),
+      parameter.createIndexes()
     ]);
   })
   .then(() => mongoose.disconnect())

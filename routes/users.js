@@ -3,15 +3,17 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 
-const TasksFolder = require('../models/tasks-folders');
+const {User} = require('../models/user');
 
-/* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
-  TasksFolder.find()
+  User.find()
+    .sort('name')
     .then(results => {
       res.json(results);
     })
-    .catch(err => next(err));
+    .catch(err => {
+      next(err);
+    });
 });
 
 module.exports = router;

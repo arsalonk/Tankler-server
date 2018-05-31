@@ -2,16 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const mongoose = require('mongoose');
-const passport = require('passport');
 
-const Tasks = require('../models/task');
-
-router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
+const Parameters = require('../models/parameter');
 
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
   const userId = req.user.id;
-  Tasks.find({ userId })
+  Parameters.find({ userId })
     .then(results => {
       res.json(results);
     })
@@ -20,11 +17,11 @@ router.get('/', (req, res, next) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-  const { name, category } = req.body;
+  const { stats, category } = req.body;
   const userId = req.user.id;
-  const newTask = { name, category, userId };
+  const newParameter = { stats, category, userId };
 
-  Tasks.create(newTask)
+  Parameters.create(newParameter)
     .then(result => {
       res.location(`${req.originalUrl}/${result.id}`)
         .status(201)
@@ -38,11 +35,10 @@ router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
   const userId = req.user.id;
 
-  Tasks.findOneAndRemove({ _id: id, userId })
+  Parameters.findOneAndRemove({ _id: id, userId })
     .then(() => {
       res.status(204).end();
     })
     .catch(err => next(err));
 });
-
 module.exports = router;
