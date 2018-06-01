@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const Parameters = require('../models/parameter');
+
+router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
 
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
@@ -29,6 +32,32 @@ router.post('/', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+router.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { stats, category } = req.body;
+  const userId = req.user.id;
+
+  const updateParameter = { stats, category, userId };
+
+  Parameters.findOneAndUpdate({ _id: id, userId }, updateParameter, { new: true })
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      if (err.code === 11000) {
+        err = new Error('Folder name already exists');
+        err.status = 400;
+      }
+      next(err);
+    });
+});
+
 
 /* ========== DELETE/REMOVE A SINGLE ITEM ========== */
 router.delete('/:id', (req, res, next) => {
