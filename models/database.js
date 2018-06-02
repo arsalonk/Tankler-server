@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const databaseSchema = mongoose.Schema({
   name: {type: String, required: true},
   scientificName: {type: String, required: true},
-  grouping: {type: String, required: true}
-})
+  grouping: {type: String, required: true},
+  quantity: {type: Number}
+});
 
 databaseSchema.set('toObject', {
   transform: function (doc, ret) {

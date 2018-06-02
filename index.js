@@ -14,6 +14,7 @@ const tasksRouter = require('./routes/tasks');
 const parametersRouter = require('./routes/parameters');
 const usersRouter = require('./routes/users');
 const databaseRouter = require('./routes/database');
+const tankRouter = require('./routes/tank');
 const authRouter = require('./routes/auth');
 
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api/tasks', tasksRouter);
 app.use('/api/parameters', parametersRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/database', databaseRouter);
+app.use('/api/tank', tankRouter);
 app.use('/api', authRouter);
 
 // Catch-all 404
