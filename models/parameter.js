@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const parameterSchema = mongoose.Schema({
   stats: { type: Number, required: true },
   category: { type: String, required: true },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
-}, {timestamps: true});
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  updatedAt: { type: String, required: true}
+});
 
 parameterSchema.set('toObject', {
   transform: function (doc, ret) {

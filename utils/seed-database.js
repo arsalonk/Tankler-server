@@ -3,9 +3,11 @@ const { DATABASE_URL } = require('../config');
 
 const task = require('../models/task');
 const parameter = require('../models/parameter');
+const database = require('../models/database')
 
 const seedTasks = require('../db/seed/tasks');
 const seedParameters = require('../db/seed/parameters')
+const seedDatabase = require('../db/seed/database')
 
 mongoose.connect(DATABASE_URL)
   .then(() => {
@@ -16,7 +18,9 @@ mongoose.connect(DATABASE_URL)
       task.insertMany(seedTasks),
       task.createIndexes(),
       parameter.insertMany(seedParameters),
-      parameter.createIndexes()
+      parameter.createIndexes(),
+      database.insertMany(seedDatabase),
+      database.createIndexes()
     ]);
   })
   .then(() => mongoose.disconnect())

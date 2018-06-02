@@ -20,9 +20,9 @@ router.get('/', (req, res, next) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-  const { stats, category } = req.body;
+  const { stats, category, updatedAt } = req.body;
   const userId = req.user.id;
-  const newParameter = { stats, category, userId };
+  const newParameter = { stats, category, updatedAt, userId };
 
   Parameters.create(newParameter)
     .then(result => {
@@ -36,10 +36,10 @@ router.post('/', (req, res, next) => {
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
-  const { stats, category } = req.body;
+  const { stats, category, updatedAt } = req.body;
   const userId = req.user.id;
 
-  const updateParameter = { stats, category, userId };
+  const updateParameter = { stats, category, updatedAt, userId };
 
   Parameters.findOneAndUpdate({ _id: id, userId }, updateParameter, { new: true })
     .then(result => {

@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Common Clownfish",
+    "scientificName": "Amphiprion ocellaris",
+    "grouping": "fish"
+  },
+  {
+    "name": "Firefish",
+    "scientificName": "Nemateleotris magnifier",
+    "grouping": "fish"
+  },
+  {
+    "name": "Flame Angelfish",
+    "scientificName": "Centropyge loricula",
+    "grouping": "fish"
+  },
+  {
+    "name": "Royal Gramma",
+    "scientificName": "Gramma loreto",
+    "grouping": "fish"
+  },
+  {
+    "name": "Frogspawn",
+    "scientificName": "Euphyllia divisa",
+    "grouping": "coral"
+  },
+  {
+    "name": "Rhodactis Mushroom",
+    "scientificName": "Ricordea yuma",
+    "grouping": "coral"
+  },
+  {
+    "name": "Blueberry Sea Fan",
+    "scientificName": "Acalycigorgia sp.",
+    "grouping": "coral"
+  },
+  {
+    "name": "Spiny Pectinia",
+    "scientificName": "Pectinia alcincornis",
+    "grouping": "coral"
+  },
+  {
+    "name": "Emerald Crab",
+    "scientificName": "Mithrax sculptus",
+    "grouping": "invertebrate"
+  },
+  {
+    "name": "Harlequin Shrimp",
+    "scientificName": "Hymenocera picta",
+    "grouping": "invertebrate"
+  }
+]
