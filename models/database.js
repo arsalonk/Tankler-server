@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 const databaseSchema = mongoose.Schema({
   name: {type: String, required: true},
   scientificName: {type: String, required: true},
-  grouping: {type: String, required: true},
-  quantity: {type: Number}
+  grouping: {type: String, required: true}
 });
 
 databaseSchema.set('toObject', {

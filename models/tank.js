@@ -5,7 +5,6 @@ const tankSchema = mongoose.Schema({
   width: {type: Number, required: true},
   height: {type: Number, required: true},
   volume: {type: Number, required: true},
-  livestock: [{type: mongoose.Schema.Types.ObjectId, ref: 'Database'}],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 

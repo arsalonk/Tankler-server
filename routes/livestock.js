@@ -3,14 +3,14 @@ const router = express.Router();
 
 const passport = require('passport');
 
-const Parameters = require('../models/parameter');
+const Livestock = require('../models/livestock');
 
 router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
 
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
   const userId = req.user.id;
-  Parameters.find({ userId })
+  Livestock.find({userId})
     .then(results => {
       res.json(results);
     })
@@ -19,11 +19,11 @@ router.get('/', (req, res, next) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-  const { stats, category, updatedAt } = req.body;
+  const { name, scientificName, grouping, quantity } = req.body;
   const userId = req.user.id;
-  const newParameter = { stats, category, updatedAt, userId };
+  const newLivestock = { name, scientificName, grouping, quantity, userId };
 
-  Parameters.create(newParameter)
+  Livestock.create(newLivestock)
     .then(result => {
       res.location(`${req.originalUrl}/${result.id}`)
         .status(201)
@@ -35,12 +35,12 @@ router.post('/', (req, res, next) => {
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
-  const { stats, category, updatedAt } = req.body;
+  const { name, scientificName, grouping, quantity } = req.body;
   const userId = req.user.id;
 
-  const updateParameter = { stats, category, updatedAt, userId };
+  const updateLivestock = { name, scientificName, grouping, quantity, userId };
 
-  Parameters.findOneAndUpdate({ _id: id, userId }, updateParameter, { new: true })
+  Livestock.findOneAndUpdate({ _id: id, userId }, updateLivestock, { new: true })
     .then(result => {
       if (result) {
         res.json(result);
@@ -53,16 +53,16 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-
 /* ========== DELETE/REMOVE A SINGLE ITEM ========== */
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
   const userId = req.user.id;
 
-  Parameters.findOneAndRemove({ _id: id, userId })
+  Livestock.findOneAndRemove({ _id: id, userId })
     .then(() => {
       res.status(204).end();
     })
     .catch(err => next(err));
 });
+
 module.exports = router;
