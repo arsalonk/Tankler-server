@@ -15,6 +15,7 @@ const parametersRouter = require('./routes/parameters');
 const usersRouter = require('./routes/users');
 const databaseRouter = require('./routes/database');
 const tankRouter = require('./routes/tank');
+const livestockRouter = require('./routes/livestock');
 const authRouter = require('./routes/auth');
 
 const app = express();
@@ -41,6 +42,7 @@ app.use('/api/parameters', parametersRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/database', databaseRouter);
 app.use('/api/tank', tankRouter);
+app.use('/api/livestock', livestockRouter);
 app.use('/api', authRouter);
 
 // Catch-all 404

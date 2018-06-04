@@ -5,6 +5,7 @@ const task = require('../models/task');
 const parameter = require('../models/parameter');
 const database = require('../models/database')
 const tank = require('../models/tank')
+const livestock = require('../models/livestock')
 
 const seedTasks = require('../db/seed/tasks');
 const seedParameters = require('../db/seed/parameters')
@@ -22,7 +23,8 @@ mongoose.connect(DATABASE_URL)
       parameter.createIndexes(),
       database.insertMany(seedDatabase),
       database.createIndexes(),
-      tank.createIndexes()
+      tank.createIndexes(),
+      livestock.createIndexes()
     ]);
   })
   .then(() => mongoose.disconnect())

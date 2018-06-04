@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
 const livestockSchema = mongoose.Schema({
-  name: {type: String, required: true},
-  scientificName: {type: String, required: true},
-  grouping: {type: String, required: true},
-  quantity: {type: Number, required: true},
+  name: { type: String, required: true },
+  scientificName: { type: String, required: true },
+  nickname: { type: String },
+  grouping: { type: String, required: true },
+  // createAt: { type: String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 
 });
@@ -17,4 +18,4 @@ livestockSchema.set('toObject', {
   }
 });
 
-module.exports = mongoose.model('Database', livestockSchema)
+module.exports = mongoose.model('Livestock', livestockSchema)

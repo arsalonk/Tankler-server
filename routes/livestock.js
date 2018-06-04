@@ -11,6 +11,7 @@ router.use('/', passport.authenticate('jwt', { session: false, failWithError: tr
 router.get('/', (req, res, next) => {
   const userId = req.user.id;
   Livestock.find({userId})
+    .sort('name')
     .then(results => {
       res.json(results);
     })
