@@ -5,7 +5,7 @@ const livestockSchema = mongoose.Schema({
   scientificName: { type: String, required: true },
   nickname: { type: String },
   grouping: { type: String, required: true },
-  // createAt: { type: String, required: true },
+  createdAt: { type: String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 
 });

@@ -20,9 +20,9 @@ router.get('/', (req, res, next) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-  const { name, category } = req.body;
+  const { name, category, createdOn, displayOn, repeat } = req.body;
   const userId = req.user.id;
-  const newTask = { name, category, userId };
+  const newTask = { name, category, createdOn, displayOn, repeat, userId };
 
   Tasks.create(newTask)
     .then(result => {
@@ -32,6 +32,28 @@ router.post('/', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+router.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { name, category, createdOn, displayOn, repeat } = req.body;
+  const userId = req.user.id;
+
+  const updateTask = { name, category, createdOn, displayOn, repeat, userId };
+
+  Tasks.findOneAndUpdate({ _id: id, userId }, updateTask, { new: true })
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 
 /* ========== DELETE/REMOVE A SINGLE ITEM ========== */
 router.delete('/:id', (req, res, next) => {

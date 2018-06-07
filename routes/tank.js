@@ -48,13 +48,7 @@ router.put('/:id', (req, res, next) => {
         next();
       }
     })
-    .catch(err => {
-      if (err.code === 11000) {
-        err = new Error('Folder name already exists');
-        err.status = 400;
-      }
-      next(err);
-    });
+    .catch(err => next(err));
 });
 
 /* ========== DELETE/REMOVE A SINGLE ITEM ========== */
