@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const { DATABASE_URL } = require('../config');
 
@@ -14,6 +15,7 @@ const seedDatabase = require('../db/seed/database')
 mongoose.connect(DATABASE_URL)
   .then(() => {
     mongoose.connection.db.dropDatabase();
+    console.log(DATABASE_URL)
   })
   .then(() => {
     return Promise.all([

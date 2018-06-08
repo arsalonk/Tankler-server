@@ -20,9 +20,9 @@ router.get('/', (req, res, next) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/', (req, res, next) => {
-  const { name, scientificName, grouping, createdAt } = req.body;
+  const { name, scientificName, grouping, createdAt, img } = req.body;
   const userId = req.user.id;
-  const newLivestock = { name, scientificName, grouping, createdAt, userId };
+  const newLivestock = { name, scientificName, grouping, createdAt, img, userId };
 
   Livestock.create(newLivestock)
     .then(result => {
@@ -36,10 +36,10 @@ router.post('/', (req, res, next) => {
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
-  const { name, scientificName, nickname, grouping, createdAt } = req.body;
+  const { name, scientificName, grouping, createdAt } = req.body;
   const userId = req.user.id;
 
-  const updateLivestock = { name, scientificName, nickname, grouping, createdAt, userId };
+  const updateLivestock = { name, scientificName, grouping, createdAt, userId };
 
   Livestock.findOneAndUpdate({ _id: id, userId }, updateLivestock, { new: true })
     .then(result => {

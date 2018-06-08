@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const databaseSchema = mongoose.Schema({
-  name: {type: String, required: true},
-  scientificName: {type: String, required: true},
-  grouping: {type: String, required: true}
+  name: { type: String, required: true },
+  scientificName: { type: String, required: true },
+  order: { type: String },
+  family: { type: String },
+  grouping: { type: String, required: true },
+  img: { type: String },
+  expanded: { type: Boolean }
 });
 
 databaseSchema.set('toObject', {

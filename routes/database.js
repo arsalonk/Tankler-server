@@ -17,4 +17,25 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
+/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+router.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { name, scientificName, order, family, grouping, img, expanded } = req.body;
+  const userId = req.user.id;
+
+  const updateDatabase = { name, scientificName, order, family, grouping, img, expanded, userId };
+
+  Database.findByIdAndUpdate(id, updateDatabase, { new: true })
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 module.exports = router;
